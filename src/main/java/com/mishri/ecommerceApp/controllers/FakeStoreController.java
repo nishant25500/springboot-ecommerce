@@ -1,5 +1,6 @@
 package com.mishri.ecommerceApp.controllers;
 
+import com.mishri.ecommerceApp.dto.ListProductDTO;
 import com.mishri.ecommerceApp.dto.ProductsDTO;
 import com.mishri.ecommerceApp.services.IProductService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,4 +34,8 @@ public class FakeStoreController {
         return this.productService.getAllProducts();
     }
 
+    @GetMapping("/productsFromRestTemplate")
+    public ListProductDTO getAllProductsFromRestTemplate() throws IOException {
+        return this.productService.getAllProductsFromRestTemplate();
+    }
 }
