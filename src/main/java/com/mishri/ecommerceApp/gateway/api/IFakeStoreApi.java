@@ -12,5 +12,4 @@ public interface IFakeStoreApi {
     @GET("/products")
     Call<List<FakeStoreProductsResponseDTO>> getAllProducts() throws IOException;
 
-
 }

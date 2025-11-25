@@ -1,6 +1,5 @@
 package com.mishri.ecommerceApp.controllers;
 
-import com.mishri.ecommerceApp.dto.ListProductDTO;
 import com.mishri.ecommerceApp.dto.ProductsDTO;
 import com.mishri.ecommerceApp.services.IProductService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/ecommerce")
-public class FakeStoreController {
+public class FakeStoreProductController {
 
     //constructor injection
     private final IProductService productService;
 
-    public FakeStoreController(IProductService _productService){
+    public FakeStoreProductController(IProductService _productService){
         this.productService = _productService;
     }
 
@@ -34,8 +33,9 @@ public class FakeStoreController {
         return this.productService.getAllProducts();
     }
 
-    @GetMapping("/productsFromRestTemplate")
-    public ListProductDTO getAllProductsFromRestTemplate() throws IOException {
-        return this.productService.getAllProductsFromRestTemplate();
-    }
+//    deprecated not needed now as we are using concept of @Qualifier
+//    @GetMapping("/productsFromRestTemplate")
+//    public List<ProductsDTO> getAllProductsFromRestTemplate() throws IOException {
+//        return this.productService.getAllProductsFromRestTemplate();
+//    }
 }

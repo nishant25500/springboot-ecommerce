@@ -3,13 +3,15 @@ package com.mishri.ecommerceApp.gateway;
 import com.mishri.ecommerceApp.dto.FakeStoreProductsResponseDTO;
 import com.mishri.ecommerceApp.dto.ProductsDTO;
 import com.mishri.ecommerceApp.gateway.api.IFakeStoreApi;
+import com.mishri.ecommerceApp.mappers.GetAllProductsMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 
 import java.io.IOException;
 import java.util.List;
 
-@Service
+@Component("fakeStoreRetrofitGateway")
 public class FakeStoreProductGateway implements IProductGateWay{
     private final IFakeStoreApi fakeStoreApi;
 
@@ -24,13 +26,6 @@ public class FakeStoreProductGateway implements IProductGateWay{
             throw new IOException("Failed to fetch products");
         }
 
-        return response.stream().map(
-                fakeStoreProductsResponseDTO -> new ProductsDTO(
-                        fakeStoreProductsResponseDTO.getId(),
-                        fakeStoreProductsResponseDTO.getTitle(),
-                        fakeStoreProductsResponseDTO.getPrice(),
-                        fakeStoreProductsResponseDTO.getCategory()
-                )
-        ).toList();
+        return GetAllProductsMapper.toProductDTO(response);
     }
 }
