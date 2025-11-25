@@ -2,7 +2,6 @@ package com.mishri.ecommerceApp.services;
 
 import com.mishri.ecommerceApp.dto.ProductsDTO;
 import com.mishri.ecommerceApp.gateway.IProductGateWay;
-//import com.mishri.ecommerceApp.gateway.IProductRestTemplateGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,6 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements IProductService {
     IProductGateWay iProductGateWay;
-//    IProductRestTemplateGateway iProductRestTemplateGateway;
 
     @Autowired
     ProductServiceImpl(@Qualifier("fakeStoreRestTemplateGateway") IProductGateWay _iProductGateWay){
@@ -25,9 +23,4 @@ public class ProductServiceImpl implements IProductService {
         return iProductGateWay.getAllProducts();
     }
 
-//    deprecated not needed now as we are using concept of @Qualifier
-//    @Override
-//    public List<ProductsDTO> getAllProductsFromRestTemplate() throws IOException {
-//        return iProductRestTemplateGateway.getAllProducts();
-//    }
 }

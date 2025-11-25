@@ -6,7 +6,6 @@ import com.mishri.ecommerceApp.mappers.GetAllProductsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -14,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component("fakeStoreRestTemplateGateway")
-public class RestTemplateGateway implements IProductGateWay{
+public class RestTemplateProductGateway implements IProductGateWay{
     @Autowired
     private RestTemplate restTemplate;
 

@@ -5,17 +5,15 @@ import com.mishri.ecommerceApp.dto.ProductsDTO;
 import com.mishri.ecommerceApp.gateway.api.IFakeStoreApi;
 import com.mishri.ecommerceApp.mappers.GetAllProductsMapper;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import retrofit2.Call;
 
 import java.io.IOException;
 import java.util.List;
 
 @Component("fakeStoreRetrofitGateway")
-public class FakeStoreProductGateway implements IProductGateWay{
+public class RetrofitProductGateway implements IProductGateWay{
     private final IFakeStoreApi fakeStoreApi;
 
-    public FakeStoreProductGateway(IFakeStoreApi _fakeStoreApi){
+    public RetrofitProductGateway(IFakeStoreApi _fakeStoreApi){
         this.fakeStoreApi = _fakeStoreApi;
     }
     @Override

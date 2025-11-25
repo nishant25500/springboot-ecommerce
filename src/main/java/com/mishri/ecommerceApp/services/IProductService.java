@@ -7,7 +7,4 @@ import java.util.List;
 
 public interface IProductService {
     List<ProductsDTO> getAllProducts() throws IOException;
-
-    //    deprecated not needed now as we are using concept of @Qualifier
-//    List<ProductsDTO> getAllProductsFromRestTemplate() throws IOException;
 }
