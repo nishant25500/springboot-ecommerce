@@ -1,15 +1,17 @@
-package com.mishri.ecommerceApp.dto;
+package com.mishri.ecommerceApp.entity;
 
+import jakarta.persistence.Entity;
 import lombok.*;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductsDTO {
-    long id;
+public class Product extends BaseEntity{
     String title;
     Double price;
     String category;
 }
+

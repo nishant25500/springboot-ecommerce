@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FakeStoreProductsResponseDTO {
-    private String id;
+    private long id;
     private String title;
     private Double price;
     private String description;
