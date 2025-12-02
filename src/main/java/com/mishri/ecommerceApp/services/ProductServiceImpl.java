@@ -1,6 +1,7 @@
 package com.mishri.ecommerceApp.services;
 
 import com.mishri.ecommerceApp.dto.ProductDTO;
+import com.mishri.ecommerceApp.dto.ProductWithCategoryDTO;
 import com.mishri.ecommerceApp.entity.Category;
 import com.mishri.ecommerceApp.entity.Product;
 //import com.mishri.ecommerceApp.gateway.IProductGateWay;
@@ -35,7 +36,7 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ProductDTO createProduct(ProductDTO dto) throws Exception{
         Category category = categoryRepo.findById(dto.getCategoryId())
-                            .orElseThrow(() -> new Exception("Category not found"));
+                            .orElseThrow(() -> new Exception("CategoryController not found"));
         Product saved = productRepo.save(ProductMapper.toEntity(dto,category));
         return ProductMapper.toDto(saved);
     }
@@ -46,5 +47,22 @@ public class ProductServiceImpl implements IProductService {
                 .orElseThrow(() -> new Exception("Product not found"));
         return ProductMapper.toDto(product);
     }
+
+    @Override
+    public ProductWithCategoryDTO getProductWithCategory(Long id) throws Exception{
+        Product product = productRepo.findById(id)
+                .orElseThrow(() -> new Exception("Product not found"));
+
+        return ProductMapper.toProductWithCategoryDTO(product);
+
+    }
+
+    @Override
+    public List<ProductDTO> getAllProducts(){
+        List<Product> products = productRepo.findAll();
+
+        return ProductMapper.toListProductDto(products);
+    }
+
 
 }

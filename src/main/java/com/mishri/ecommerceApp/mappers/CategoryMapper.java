@@ -1,8 +1,10 @@
 package com.mishri.ecommerceApp.mappers;
 
 import com.mishri.ecommerceApp.dto.CategoryDTO;
+import com.mishri.ecommerceApp.dto.CategoryWithAllProductsDTO;
 import com.mishri.ecommerceApp.dto.ProductDTO;
 import com.mishri.ecommerceApp.entity.Category;
+import com.mishri.ecommerceApp.entity.Product;
 
 import java.util.List;
 
@@ -27,5 +29,13 @@ public class CategoryMapper {
                 .name(category.getName())
                 .build())
                 .toList();
+    }
+
+    public static CategoryWithAllProductsDTO toCategoryWithAllProductsDTO(Category category){
+        return CategoryWithAllProductsDTO.builder()
+                .id(category.getId())
+                .name(category.getName())
+                .products(ProductMapper.toListProductDto(category.getProducts()))
+                .build();
     }
 }

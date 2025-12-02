@@ -1,21 +1,21 @@
 package com.mishri.ecommerceApp.controllers;
 
 import com.mishri.ecommerceApp.dto.ProductDTO;
+import com.mishri.ecommerceApp.dto.ProductWithCategoryDTO;
 import com.mishri.ecommerceApp.services.IProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/ecommerce/product")
-public class Product {
+public class ProductController {
 
     //constructor injection
     private final IProductService productService;
 
-    public Product(IProductService _productService){
+    public ProductController(IProductService _productService){
         this.productService = _productService;
     }
 
@@ -40,5 +40,15 @@ public class Product {
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable long id) throws Exception{
         return ResponseEntity.ok(this.productService.getProductById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductDTO>> getAllProducts() throws Exception{
+        return ResponseEntity.ok(this.productService.getAllProducts());
+    }
+
+    @GetMapping("/{id}/details")
+    public ResponseEntity<ProductWithCategoryDTO> getProductWithCategory(@PathVariable Long id) throws Exception{
+        return ResponseEntity.ok(this.productService.getProductWithCategory(id));
     }
 }

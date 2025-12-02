@@ -1,9 +1,6 @@
 package com.mishri.ecommerceApp.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -32,8 +29,8 @@ public class Product extends BaseEntity{
     @Column
     private Boolean popular;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_id", nullable = false)
-    private Category category;  //Category is the return type of the column category_id
+    private Category category;  //CategoryController is the return type of the column category_id
 }
 
