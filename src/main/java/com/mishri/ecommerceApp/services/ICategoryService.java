@@ -14,6 +14,6 @@ public interface ICategoryService {
 
     CategoryDTO findCategoryByName(String name);
 
-    CategoryWithAllProductsDTO getAllProductOfCategoryWithId(Long id) throws Exception;
+    CategoryWithAllProductsDTO getAllProductOfCategoryWithId(Long id);
 
 }

@@ -33,22 +33,24 @@ public class ProductController {
 //    }
 
     @PostMapping("/create")
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO request) throws Exception{
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO request){
         return ResponseEntity.ok(this.productService.createProduct(request));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> getProductById(@PathVariable long id) throws Exception{
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable long id){
         return ResponseEntity.ok(this.productService.getProductById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAllProducts() throws Exception{
+    public ResponseEntity<List<ProductDTO>> getAllProducts(){
         return ResponseEntity.ok(this.productService.getAllProducts());
     }
 
     @GetMapping("/{id}/details")
-    public ResponseEntity<ProductWithCategoryDTO> getProductWithCategory(@PathVariable Long id) throws Exception{
+    public ResponseEntity<ProductWithCategoryDTO> getProductWithCategory(@PathVariable Long id){
         return ResponseEntity.ok(this.productService.getProductWithCategory(id));
     }
+
+
 }

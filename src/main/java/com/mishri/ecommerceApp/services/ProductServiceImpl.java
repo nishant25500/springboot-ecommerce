@@ -5,6 +5,8 @@ import com.mishri.ecommerceApp.dto.ProductWithCategoryDTO;
 import com.mishri.ecommerceApp.entity.Category;
 import com.mishri.ecommerceApp.entity.Product;
 //import com.mishri.ecommerceApp.gateway.IProductGateWay;
+import com.mishri.ecommerceApp.exception.CategoryNotFoundException;
+import com.mishri.ecommerceApp.exception.ProductNotFoundException;
 import com.mishri.ecommerceApp.mappers.ProductMapper;
 import com.mishri.ecommerceApp.repository.CategoryRepository;
 import com.mishri.ecommerceApp.repository.ProductRepository;
@@ -34,24 +36,25 @@ public class ProductServiceImpl implements IProductService {
 //    }
 
     @Override
-    public ProductDTO createProduct(ProductDTO dto) throws Exception{
+    public ProductDTO createProduct(ProductDTO dto){
         Category category = categoryRepo.findById(dto.getCategoryId())
-                            .orElseThrow(() -> new Exception("CategoryController not found"));
+                            .orElseThrow(() -> new CategoryNotFoundException("Category not found"));
         Product saved = productRepo.save(ProductMapper.toEntity(dto,category));
         return ProductMapper.toDto(saved);
     }
 
     @Override
-    public ProductDTO getProductById(long id) throws Exception{
+    public ProductDTO getProductById(long id){
         Product product = productRepo.findById(id)
-                .orElseThrow(() -> new Exception("Product not found"));
+                .orElseThrow(() -> new ProductNotFoundException("Product with id: "+id+" not found"));
         return ProductMapper.toDto(product);
     }
 
     @Override
-    public ProductWithCategoryDTO getProductWithCategory(Long id) throws Exception{
+    public ProductWithCategoryDTO getProductWithCategory(Long id){
+
         Product product = productRepo.findById(id)
-                .orElseThrow(() -> new Exception("Product not found"));
+                .orElseThrow(() -> new ProductNotFoundException("Product with id: "+id+" not found"));
 
         return ProductMapper.toProductWithCategoryDTO(product);
 

@@ -4,6 +4,7 @@ import com.mishri.ecommerceApp.dto.CategoryDTO;
 import com.mishri.ecommerceApp.dto.CategoryWithAllProductsDTO;
 import com.mishri.ecommerceApp.entity.Category;
 import com.mishri.ecommerceApp.entity.Product;
+import com.mishri.ecommerceApp.exception.CategoryNotFoundException;
 import com.mishri.ecommerceApp.mappers.CategoryMapper;
 import com.mishri.ecommerceApp.repository.CategoryRepository;
 import com.mishri.ecommerceApp.repository.ProductRepository;
@@ -39,9 +40,9 @@ public class CategoryServiceImpl implements ICategoryService{
     }
 
     @Override
-    public CategoryWithAllProductsDTO getAllProductOfCategoryWithId(Long id) throws Exception{
+    public CategoryWithAllProductsDTO getAllProductOfCategoryWithId(Long id){
         Category category = categoryRepo.findById(id)
-                .orElseThrow(() -> new Exception("Category Not found"));
+                .orElseThrow(() -> new CategoryNotFoundException("Category Not found"));
 
 //        do not need to do this explicitly it is handled by jpa mapping
 //        List<Product> products = productRepo.findByCategoryId(category.getId());
